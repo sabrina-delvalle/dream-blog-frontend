@@ -11,7 +11,7 @@ export default function ProtectedRoutes() {
  // const [token, setToken] = useState(null);
 
   let token = new Promise((resolve, reject) => {
-        axios.get('http://localhost:5000/tokenvalidation', {
+        axios.get(`${process.env.REACT_APP_API}/tokenvalidation`, {
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
