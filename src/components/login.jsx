@@ -42,7 +42,7 @@ export default function Login() {
     formData.append('username', username)
     formData.append('password', password)
       
-  axios.post('http://localhost:5000/login', formData, {
+  axios.post(`${process.env.REACT_APP_API}/login`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Accept': 'plain/text'

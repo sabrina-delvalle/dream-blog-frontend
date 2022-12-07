@@ -25,7 +25,7 @@ export default function Main() {
   useEffect(() =>{
 
     if(charged && newPost !== 0 ){
-      fetch(`http://localhost:5000/read/latest/${last}`, {
+      fetch(`${process.env.REACT_APP_API}/read/latest/${last}`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export default function Main() {
     }
     
     if(!charged){
-      fetch('http://localhost:5000/read', {
+      fetch(`${process.env.REACT_APP_API}/read`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",

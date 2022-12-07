@@ -25,7 +25,7 @@ export default function Post() {
     let { id } = useParams();
 
     useEffect( () => {
-        axios.get(`http://localhost:5000/post/${id}`, {
+        axios.get(`${process.env.REACT_APP_API}/post/${id}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
@@ -38,7 +38,7 @@ export default function Post() {
 
         async function retrieveToken(){
             try{
-              await axios.get('http://localhost:5000/token', {
+              await axios.get(`${process.env.REACT_APP_API}/token`, {
                 headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
@@ -68,7 +68,7 @@ export default function Post() {
           
           if(bearer){
             console.log('its passing away');
-            fetch('http://localhost:5000/user', {
+            fetch(`${process.env.REACT_APP_API}/user`, {
              method: 'GET',
              headers: {
                "Content-Type": "application/json",
@@ -104,7 +104,7 @@ export default function Post() {
 
         console.log('previous comment ', comment)
         
-            fetch(`http://localhost:5000/comment/${id}`, {
+            fetch(`${process.env.REACT_APP_API}/comment/${id}`, {
                 method: 'PATCH',
                 headers: {
                     "Content-Type": "application/json",
@@ -133,7 +133,7 @@ export default function Post() {
     function handleDelete(e){
         console.log('element ', e)
         console.log(post);
-        fetch(`http://localhost:5000/comment/delete/${id}`, {
+        fetch(`${process.env.REACT_APP_API}/comment/delete/${id}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",

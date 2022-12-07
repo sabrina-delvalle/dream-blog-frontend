@@ -19,7 +19,7 @@ export default function Header() {
   useEffect( () => {
     async function retrieveToken(){
       try{
-          await axios.get('http://localhost:5000/token', {
+          await axios.get(`${process.env.REACT_APP_API}/token`, {
           headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
@@ -42,7 +42,7 @@ export default function Header() {
     
     if(bearer){
       console.log('its passing away');
-      fetch('http://localhost:5000/user', {
+      fetch(`${process.env.REACT_APP_API}/user`, {
        method: 'GET',
        headers: {
          "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export default function Header() {
 
   const handleCookieDelete = () => {
     console.log('here handling cookie inside')
-    axios.get('http://localhost:5000/clearcookie', {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API}/clearcookie`, {withCredentials: true})
     .then((res) => {
       console.log(res.data)
       //setLogUser(false)

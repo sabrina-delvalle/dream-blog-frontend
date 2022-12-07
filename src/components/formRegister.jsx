@@ -69,7 +69,7 @@ class FormRegister extends Component {
 /*       const res = await axios.postForm('register', formData)
       console.log(res); */
 
-    axios.post('http://localhost:5000/register', formData)
+    axios.post(`${process.env.REACT_APP_API}/register`, formData)
         .then(response => console.log(response.data))
         .catch(err => console.log(err))
     

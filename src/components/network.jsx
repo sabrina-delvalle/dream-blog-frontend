@@ -5,7 +5,7 @@ export default function Network() {
     const [backendData, setBackendData] = useState([{}]);
 
     useEffect( () => {
-      fetch('http://localhost:5000/login')
+      fetch( `${process.env.REACT_APP_API}/login`)
           .then( response => response.json())
           .then(data => {
             console.log(data)

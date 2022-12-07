@@ -13,7 +13,7 @@ export default function Userprofile() {
 
     async function clearCookie (){
         console.log('here handling cookie inside')
-        axios.get('http://localhost:5000/clearcookie', {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_API}/clearcookie`, {withCredentials: true})
           .then((res) => {
           console.log(res.data)
           //document.location.reload('/')

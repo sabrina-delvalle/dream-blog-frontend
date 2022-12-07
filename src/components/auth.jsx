@@ -17,7 +17,7 @@ export default class Auth extends Component {
   handleSubmit(event){
     //console.log('A namd was submitted: ' + this.state.name)
 
-    fetch('http://localhost:5000/header', {
+    fetch(`${process.env.REACT_APP_API}/header`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",

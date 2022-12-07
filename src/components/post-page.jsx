@@ -61,7 +61,7 @@ export default class PostPage extends Component {
         event.preventDefault();
         console.log('A title was submitted: ' + this.state.title + ' an autor was sent: ' + this.state.autor + ', text: ' + this.state.text)
     
-        fetch('http://localhost:5000/post', {
+        fetch(`${process.env.REACT_APP_API}/post`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -118,7 +118,7 @@ export default class PostPage extends Component {
             const formData = new FormData();
             formData.append("file", file);
             
-            const image = await axios.post('http://localhost:5000/postimage', formData)
+            const image = await axios.post(`${process.env.REACT_APP_API}/postimage`, formData)
             .then(response => {
                                 console.log('image pre-set, response: ', response.data);
                                 this.setState({images: [...this.state['images'], response.data.url] })
