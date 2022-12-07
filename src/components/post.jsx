@@ -12,7 +12,7 @@ import axios from "axios";
 import draftToHtml from 'draftjs-to-html'
 import parse from 'html-react-parser';
 
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] ='application/json';
 
 export default function Post() {
