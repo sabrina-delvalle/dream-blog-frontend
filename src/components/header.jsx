@@ -99,7 +99,7 @@ export default function Header() {
 function Login(props){
   return (
     <div>
-      <a href="http://localhost:3000/login" className="log-link">Login</a>/<a href="http://localhost:3000/register" className="log-link">Sign In</a>
+      <a href={`${process.env.REACT_APP_ORIGIN_PAGE}/login`} className="log-link">Login</a>/<a href={`${process.env.REACT_APP_ORIGIN_PAGE}/register`} className="log-link">Sign In</a>
     </div>
   )
 }
@@ -108,7 +108,7 @@ function Logged(props){
   return (
   <div className="logs">
     
-    <a href="http://localhost:3000/profile" className="log-link">Welcome, {props.name}</a> 
+    <a href={`${process.env.REACT_APP_ORIGIN_PAGE}/profile`} className="log-link">Welcome, {props.name}</a> 
     
 
     <img src={props.userImg} width='50px' className="profile-img" alt='profile-img'/>

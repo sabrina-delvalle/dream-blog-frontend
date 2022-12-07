@@ -73,7 +73,7 @@ export default function Main() {
 
   let arts = article.map((elem) => 
     <li key={article.indexOf(elem)} className="top-article">
-      <a href={`http://localhost:3000/post/${elem['_id']}`} className='postLink'> 
+      <a href={`${process.env.REACT_APP_ORIGIN_PAGE}/post/${elem['_id']}`} className='postLink'> 
         <h2 className='post-title' >{elem['title']}</h2>
       </a>
         <div className='ssrr-article'>

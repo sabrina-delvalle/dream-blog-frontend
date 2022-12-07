@@ -200,7 +200,7 @@ export default function Post() {
                     <button className="post-button2" onClick={handleComment}>Post</button></div> 
                     :
                     <div  className="comments-wrapper-login">
-                        <span><a href="http://localhost:3000/login" className="log-link2">Login</a> / <a href="http://localhost:3000/register" className="log-link2">Sign In</a></span>
+                        <span><a href={`${process.env.REACT_APP_ORIGIN_PAGE}/login`} className="log-link2">Login</a> / <a href={`${process.env.REACT_APP_ORIGIN_PAGE}/register`} className="log-link2">Sign In</a></span>
                     </div> 
                 }
 
