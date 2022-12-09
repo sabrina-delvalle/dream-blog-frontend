@@ -6,7 +6,7 @@ import twitter from '../images/twitter.png'
 import instagram from '../images/instagram.png'
 import axios from 'axios'
 
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 
 class FormRegister extends Component {
