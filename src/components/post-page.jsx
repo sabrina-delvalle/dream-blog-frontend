@@ -209,7 +209,7 @@ export default class PostPage extends Component {
                         options: ['Arial', 'Tahoma', 'Verdana'],
                       },
                       image: {
-                        className: undefined,
+                        className: 'post-img',
                         component: undefined,
                         popupClassName: undefined,
                         urlEnabled: true,
