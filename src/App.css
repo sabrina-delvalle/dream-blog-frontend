@@ -648,6 +648,13 @@ a{
   z-index: 1;
 }
 
+.arrow-info{
+  animation-name: arrow;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  font-size: 30px;
+}
+
 .imageBtn:hover{
   position: relative;
   display: flex;
@@ -1237,5 +1244,4 @@ a{
   text-align: center;
   padding: 20px;
 }
-
 }
