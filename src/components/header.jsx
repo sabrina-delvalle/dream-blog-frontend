@@ -5,7 +5,7 @@ import NavBar from "./navbar"
 import axios from 'axios';
 import Cookies from 'js-cookie'
 //import { navigate } from "react-router-dom"
-//axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
 
 

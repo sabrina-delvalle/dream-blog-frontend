@@ -8,7 +8,7 @@ import facebook from '../images/facebook.png'
 import twitter from '../images/twitter.png'
 import instagram from '../images/instagram.png'
 
-//axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
@@ -86,7 +86,7 @@ export default function Login() {
             <input type="submit" value="OK" className='submit' />
           </form>
           <div>
-            <p style={{color: '#86959a'}}>OR</p>
+            <p style={{color: '#86959a'}} className='ssrr-separator'>OR</p>
             <div className='ssrr-login'>
               <a href='/'><img src={instagram} alt='fb' width='27px' className='ssrr-img-login'></img></a>
               <a href='/'><img src={facebook} alt='fb' width='27px' className='ssrr-img-login'></img></a>

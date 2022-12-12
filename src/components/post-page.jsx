@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import loginPng from '../images/login.png'
-import privacyPng from '../images/security.png'
-import logoutPng from '../images/logout.png'
-import blogPng from '../images/blog.png'
-import legalPng from '../images/legal.png'
+//import loginPng from '../images/login.png'
+//import privacyPng from '../images/security.png'
+//import logoutPng from '../images/logout.png'
+//import blogPng from '../images/blog.png'
+//import legalPng from '../images/legal.png'
 import axios from 'axios';
 import draftToHtml from 'draftjs-to-html'
 import { Editor } from 'react-draft-wysiwyg';
@@ -13,7 +13,7 @@ import { convertFromRaw } from 'draft-js';
 const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 
 
-//axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
@@ -118,7 +118,10 @@ export default class PostPage extends Component {
             const formData = new FormData();
             formData.append("file", file);
             
-            const image = await axios.post(`${process.env.REACT_APP_API}/postimage`, formData)
+            const image = await axios.post(`${process.env.REACT_APP_API}/postimage`, formData, { headers: {
+              "Content-Type": "multipart/form-data",
+              "Accept": "application/json"
+            }})
             .then(response => {
                                 console.log('image pre-set, response: ', response.data);
                                 this.setState({images: [...this.state['images'], response.data.url] })
@@ -129,7 +132,8 @@ export default class PostPage extends Component {
             //const res = await uploadFile(form_data);
             //setValue("thumbnail", res.data);
             resolve({ data: { link: image } });
-          };
+          }
+
           reader.readAsDataURL(file);
         });
 
@@ -161,14 +165,14 @@ export default class PostPage extends Component {
 
     return (
         <div className="main-profile">
-        <aside className="userdata">
+{/*         <aside className="userdata">
             <a href='/profile' className="menu-item"> <img src={loginPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Account</span> </a>
             <a href='/profile' className="menu-item"> <img src={privacyPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Privacy</span> </a>
             <a href='/profile' className="menu-item"> <img src={blogPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Blog's Info</span> </a>
             <a href='/profile' className="menu-item"> <img src={legalPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Policies</span> </a>
 
             <a href='/' className="menu-item"> <img src={logoutPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">logout</span> </a>
-        </aside>
+        </aside> */}
         <main className="edit-space">
             <form onSubmit={this.handleSubmit} className='centerForm-login'>
             <h1 className='center' > EDIT POST </h1>            
