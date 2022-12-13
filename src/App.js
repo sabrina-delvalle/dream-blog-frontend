@@ -26,16 +26,16 @@ function App() {
         <UserContext.Provider value={providerValue}>
           <Routes>
             <Route path='/' element={<Index/>} />
-            <Route path='https://dream-bg-api.onrender.com/login' element={<Login/>} />
-            <Route path='https://dream-bg-api.onrender.com/register' element={<Register/>} />
-            <Route path='https://dream-bg-api.onrender.com/auth' element={<Auth/>} />
-            <Route path='https://dream-bg-api.onrender.com/user/:id' element={<User />} />
-            <Route path='https://dream-bg-api.onrender.com/post/:id' element={<PostID />} />
-            <Route path='https://dream-bg-api.onrender.com/done' element={<Done />} />
+            <Route path='https://dreamblog.onrender.com/login' element={<Login/>} />
+            <Route path='https://dreamblog.onrender.com/register' element={<Register/>} />
+            <Route path='https://dreamblog.onrender.com/auth' element={<Auth/>} />
+            <Route path='https://dreamblog.onrender.com/user/:id' element={<User />} />
+            <Route path='https://dreamblog.onrender.com/post/:id' element={<PostID />} />
+            <Route path='https://dreamblog.onrender.com/done' element={<Done />} />
 
             <Route element={<ProtectedRoutes/>}>
-              <Route path='https://dream-bg-api.onrender.com/new-post' element={<PostPage/>} />  
-              <Route path='https://dream-bg-api.onrender.com/profile' element={<Profile/>} /> 
+              <Route path='https://dreamblog.onrender.com/new-post' element={<PostPage/>} />  
+              <Route path='https://dreamblog.onrender.com/profile' element={<Profile/>} /> 
             </Route>
           
             <Route path='*' element={<NotFound/>} />
