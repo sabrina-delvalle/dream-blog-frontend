@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useMemo } from 'react';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { HashRouter as Router, Routes, Route} from 'react-router-dom'
 import Index from './Pages/index';
 import Login from './Pages/login';
 import Register from './Pages/register';
