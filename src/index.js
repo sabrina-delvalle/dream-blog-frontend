@@ -18,7 +18,7 @@ const root = createRoot(container); // createRoot(container!) if you use TypeScr
   document.getElementById("root")
 ); */
 
-root.render(<App tab="home" />);
+root.render(<App />);
 
 
 /* const root = ReactDOM.createRoot(document.getElementById('root'));
