@@ -23,7 +23,8 @@ export default function Header() {
           headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          }
+          },
+          withCredentials: true
         })
         .then(response => {
           console.log(response.data);
