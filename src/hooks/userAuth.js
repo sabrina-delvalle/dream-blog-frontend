@@ -1,7 +1,8 @@
-import axios from "axios";
+//import axios from "axios";
 import { Outlet, Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
-let p = new Promise((resolve, reject) => {
+/* let p = new Promise((resolve, reject) => {
     axios.get(`${process.env.REACT_APP_API}/tokenvalidation`, {
       headers: {
         "Content-Type": "application/json",
@@ -12,8 +13,8 @@ let p = new Promise((resolve, reject) => {
         resolve(response['data']['token'])
         console.log('token!!! from Protected Routes: ', response['data']['token']);
       })
-  })
+  }) */
 
 export default function userAuth() {
-  return p === true /* && Cookies.get('userSession') */ ? <Outlet/> : <Navigate to="/" replace />;
+  return Cookies.get('userSession') ? <Outlet/> : <Navigate to="/" replace />;
 }
