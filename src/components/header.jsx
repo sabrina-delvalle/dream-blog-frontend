@@ -24,7 +24,8 @@ export default function Header() {
           "Content-Type": "application/json",
           "Accept": "application/json",
           },
-          withCredentials: true
+          withCredentials: true,
+          xsrfHeaderName: 'X-XSRF-TOKEN'
         })
         .then(response => {
           console.log(response.data);
