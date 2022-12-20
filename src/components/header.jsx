@@ -17,6 +17,7 @@ export default function Header() {
   //const { logUser, setLogUser } = useContext(UserContext);
   
   useEffect( () => {
+    const token = undefined;
     async function retrieveToken(){
       try{
           const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, {
@@ -40,9 +41,10 @@ export default function Header() {
     }
     retrieveToken()
 
-    console.log('bearer, before get: ', bearer)
+    console.log('bearer, before get: ', Cookies.get('Token'))
+    if(Cookies.get('Token')) token = true
     
-    if(bearer){
+    if(token){
       console.log('its passing away');
       fetch(`${process.env.REACT_APP_API}/user`, {
        method: 'GET',
