@@ -17,7 +17,7 @@ export default function Header() {
   //const { logUser, setLogUser } = useContext(UserContext);
   
   useEffect( () => {
-    const token = undefined;
+    let token = undefined;
     async function retrieveToken(){
       try{
           const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, {
