@@ -19,7 +19,7 @@ export default function Header() {
   useEffect( () => {
     async function retrieveToken(){
       try{
-          await axios.get(`${process.env.REACT_APP_API}/token`, {
+          const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, {
           headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
@@ -30,11 +30,13 @@ export default function Header() {
           console.log('previous token, ', response);
           if(response.data['token']) {
             setBearer(`Bearer ${response.data['token']}`)
+            return response.data['token']
           }
         })
+        return bearerRequest;
       }catch(err){
         console.log(err)
-      }
+    }
     }
     retrieveToken()
 
