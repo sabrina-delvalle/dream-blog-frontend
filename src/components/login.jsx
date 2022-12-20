@@ -21,7 +21,7 @@ export default function Login() {
 
 
     function handleUsername(event) {
-        setUsername(event.target.value)
+        setUsername(event.target.value.toLowerCase())
     }
 
     function handlePassword(event) {
@@ -58,10 +58,13 @@ export default function Login() {
         //setLogUser(true);
         //console.log(logUser);
         console.log('local storageee: ', res.data)
-        localStorage.setItem('username', JSON.stringify(res.data.name))
-        localStorage.setItem('userlastname', JSON.stringify(res.data.lastname))
-        localStorage.setItem('image', JSON.stringify(res.data.image))
-        Cookies.set('userSession', true, { expires: 365, secure: true, sameSite: 'strict' })
+        localStorage.setItem('username', JSON.stringify(res.data.user.name))
+        localStorage.setItem('userlastname', JSON.stringify(res.data.user.lastname))
+        localStorage.setItem('image', JSON.stringify(res.data.user.image))
+        Cookies.set('userSession', true, { expires: 365, secure: true, sameSite: 'strict' });
+        Cookies.set('Token', res.data.token, { expires: 365, secure: true, sameSite: 'strict' })
+
+
         setLogged(true)
         //this.props.navigate('/')
         //setLogUser(true);
