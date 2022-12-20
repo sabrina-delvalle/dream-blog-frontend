@@ -51,7 +51,7 @@ export default function Header() {
        headers: {
          "Content-Type": "application/json",
          "Accept": "application/json",
-         "Authorization": bearer
+         "Authorization": Cookies.get('Token')
        }
      })
      .then(response => response.json())
