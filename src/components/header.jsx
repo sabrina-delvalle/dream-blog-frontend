@@ -81,6 +81,7 @@ export default function Header() {
       //setLogUser(false)
       //document.location.reload() 
       Cookies.remove('userSession')
+      Cookies.remove('Token')
       document.location.replace('/')
   })}
 
