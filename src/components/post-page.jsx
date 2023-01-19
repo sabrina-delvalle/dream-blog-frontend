@@ -124,8 +124,8 @@ export default class PostPage extends Component {
             }})
             .then(response => {
                                 console.log('image pre-set, response: ', response.data);
-                                this.setState({images: [...this.state['images'], response.data.url] })
-                                return(response.data.url)
+                                this.setState({images: [...this.state['images'], response.data.secure_url] })
+                                return(response.data.secure_url)
                               })
             .catch(err => console.log(err))
     

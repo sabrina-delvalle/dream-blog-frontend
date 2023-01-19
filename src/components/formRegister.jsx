@@ -86,7 +86,10 @@ class FormRegister extends Component {
     console.log(res); */
 
 
-  axios.post(`${process.env.REACT_APP_API}/register`, formData)
+  axios.post(`${process.env.REACT_APP_API}/register`, formData, { headers: {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json"
+  }})
       .then(response => console.log(response.data))
       .catch(err => console.log(err))
   
