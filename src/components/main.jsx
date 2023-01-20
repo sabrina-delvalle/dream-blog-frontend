@@ -77,6 +77,7 @@ export default function Main() {
         <h2 className='post-title' >{elem['title']}</h2>
       </a>
         <div className='ssrr-article'>
+        <img src={elem['images'][0]} alt="time" className='image' width='800px'></img>
           <div className='ssrr'>
               <img src={instagram} alt='fb' width='27px' className='ssrr-img'></img>
               <img src={facebook} alt='fb' width='27px' className='ssrr-img'></img>
@@ -84,7 +85,7 @@ export default function Main() {
           </div>        
         </div>
         <p className='date'> Sun, {elem['date'].split('-')[2].slice(0, 2)}/{elem['date'].split('-')[1]}/{elem['date'].split('-')[0]}</p>
-        <div className='post-article'>{parse(draftToHtml(elem['article']))}</div>
+        <div className='post-article'>{parse(draftToHtml(elem['article']))[0]}</div>
         <h5 className='autor'>- {elem['autor']}</h5> 
     </li>
   )
