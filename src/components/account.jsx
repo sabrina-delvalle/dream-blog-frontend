@@ -69,14 +69,14 @@ function Account() {
         <main className="user-actions">
             <form onSubmit={handleSubmit}>
                 <h2 className="profile-subtitle">Accounts Page</h2>
-                    <h4>USER DATA TO ADD CACHE AND REPLACE UPDATE...</h4>
-                    <h4>Delete Account...</h4>
                     <div className="account-img-wrapper">
-                        <label className="imageBtn2" name='profileImage' htmlFor='profileImage'>Update Profile Image</label>
+                        <label className="imageBtn2" name='profileImage' htmlFor='profileImage' style={{color: "green"}}>Change Profile Image</label>
                         <input type='file' name='profileImage' id='profileImage' onChange={handleImage}/>
                     </div>            
                 <input type="submit" value='Update' className="input-update-profile" />
             </form>
+
+            <a href="/" style={{color: "red"}}>Delete Account</a>
 
         </main>
     </div>
