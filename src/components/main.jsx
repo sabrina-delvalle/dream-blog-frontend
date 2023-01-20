@@ -1,8 +1,8 @@
-import time from '../images/in-time.jpg'
+/* import time from '../images/in-time.jpg'
 import first from '../images/1.jpg'
 import second from '../images/2.jpg'
 import third from '../images/3.jpg'
-import fourth from '../images/4.jpg'
+import fourth from '../images/4.jpg' */
 import facebook from '../images/facebook.png'
 import twitter from '../images/twitter.png'
 import instagram from '../images/instagram.png'
@@ -69,7 +69,7 @@ export default function Main() {
     }
   }, [charged, newPost, last])
 
-  const images = [time, first, second, third, fourth]
+  //const images = [time, first, second, third, fourth]
 
   let arts = article.map((elem) => 
     <li key={article.indexOf(elem)} className="top-article">
@@ -77,7 +77,6 @@ export default function Main() {
         <h2 className='post-title' >{elem['title']}</h2>
       </a>
         <div className='ssrr-article'>
-          <img src={images[Math.floor(Math.random() * 5)]} alt="time" className='image' width='800px'></img>
           <div className='ssrr'>
               <img src={instagram} alt='fb' width='27px' className='ssrr-img'></img>
               <img src={facebook} alt='fb' width='27px' className='ssrr-img'></img>
