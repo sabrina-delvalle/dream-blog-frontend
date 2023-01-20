@@ -6,7 +6,7 @@ import React, { Component } from "react";
 //import legalPng from '../images/legal.png'
 import axios from 'axios';
 import draftToHtml from 'draftjs-to-html'
-import Editor from 'react-draft-wysiwyg';
+import { Editor } from 'react-draft-wysiwyg';
 //import { EditorState, convertFromRaw /* convertToRaw */ } from "draft-js";
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { convertFromRaw } from 'draft-js';
