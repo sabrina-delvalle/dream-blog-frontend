@@ -57,10 +57,11 @@ export default function Login() {
       } else {
         //setLogUser(true);
         //console.log(logUser);
-        console.log('local storageee: ', res.data)
+        console.log('local storageee: ', res.data.user)
         localStorage.setItem('username', JSON.stringify(res.data.user.name))
         localStorage.setItem('userlastname', JSON.stringify(res.data.user.lastname))
         localStorage.setItem('image', JSON.stringify(res.data.user.image))
+        localStorage.setItem('id', res.data.user._id);
         Cookies.set('userSession', true, { expires: 365, secure: true, sameSite: 'strict' });
         Cookies.set('Token', res.data.token, { expires: 365, secure: true, sameSite: 'strict' })
 

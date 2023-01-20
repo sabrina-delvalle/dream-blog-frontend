@@ -11,6 +11,7 @@ import User from './Pages/user'
 import Profile from './Pages/userprofile';
 import PostPage from './Pages/new-post';
 import PostID from './Pages/post';
+import Account from './Pages/account';
 import { UserContext } from './UserContext';
 import ProtectedRoutes from './ProtectedRoutes';
 import userAuth from './hooks/userAuth';
@@ -40,6 +41,7 @@ function App() {
               <Route element={<ProtectedRoutes/>}>
                 <Route path='/new-post' element={<PostPage/>} />  
                 <Route path='/profile' element={<Profile/>} /> 
+                <Route path='/account' element={<Account/>} />
               </Route>
             
               <Route path='*' element={<NotFound/>} />

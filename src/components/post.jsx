@@ -5,7 +5,6 @@ import facebook from '../images/facebook.png'
 import twitter from '../images/twitter.png'
 import instagram from '../images/instagram.png'
 import dots from '../images/dots-delete.png'
-import emma from '../images/emma.jpg'
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
@@ -21,7 +20,8 @@ export default function Post() {
     const [textArea, setTextArea] = useState("");
     const [user, setUser] = useState(false);
     const [name, setName] = useState('Login');
-    const [bearer, setBearer] = useState(undefined)
+    const [bearer, setBearer] = useState(undefined);
+    const [image, setImage] = useState('')
     let { id } = useParams();
 
     useEffect( () => {
@@ -84,6 +84,7 @@ export default function Post() {
                return setUser(false)
              }
              setName(data.name.toUpperCase()[0] + data.name.slice(1))
+             setImage(data.image)
              setUser(true)
            })
           } 
@@ -167,7 +168,8 @@ export default function Post() {
       
         <div className='post-article'>{parse(draftToHtml(post.article))}</div>
         <div className="user-id">
-            <img src={emma} className="profile-img2" alt='user-img' width='80px'/>
+            <img src={image} className="profile-img2" alt='user-img' width='80px'/>
+
             <p>{post.quote}</p>
             <p className="user-bio">Artista, escritora, más de 10 años en el entretenimiento Artista, escritora, más de 10 años en el entretenimiento</p>
             <h5 className='autor-2'> Autor: {post.autor}</h5>    

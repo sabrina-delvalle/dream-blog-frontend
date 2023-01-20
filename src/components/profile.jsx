@@ -25,7 +25,7 @@ export default function Userprofile() {
     return(
         <div className="main-profile">
         <aside className="userdata">
-            <a href='/profile' className="menu-item"> <img src={loginPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Account</span> </a>
+            <a href='/account' className="menu-item"> <img src={loginPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Account</span> </a>
             <a href='/profile' className="menu-item"> <img src={privacyPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Privacy</span> </a>
             <a href='/profile' className="menu-item"> <img src={blogPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Blog's Info</span> </a>
             <a href='/profile' className="menu-item"> <img src={legalPng} alt='login' style={{"width": "25px", margin: "0 10px 0 0"}}></img> <span className="user-items item-top">Policies</span> </a>

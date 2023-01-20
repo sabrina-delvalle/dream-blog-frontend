@@ -24,7 +24,7 @@ export default class PostPage extends Component {
         const contentState = convertFromRaw(content);
         const name = JSON.parse(localStorage.getItem('username'))[0].toUpperCase() + JSON.parse(localStorage.getItem('username')).slice(1);
         const lastname = JSON.parse(localStorage.getItem('userlastname'))[0].toUpperCase() + JSON.parse(localStorage.getItem('userlastname')).slice(1);
-        this.state ={title: '', autor: `${name} ${lastname}`, quote:'', text: '', images: [], /* editorState: EditorState.createEmpty(), */ contentState};  //content State JSON 
+        this.state ={title: '', autor: `${name} ${lastname}`, quote:'', text: '', images: [],/* editorState: EditorState.createEmpty(), */ contentState};  //content State JSON 
         
         this.handleTitle = this.handleTitle.bind(this);
         this.handleAutor = this.handleAutor.bind(this);
@@ -76,10 +76,18 @@ export default class PostPage extends Component {
           })
         })
           .then(response => response.json())
-          .then(data => console.log('response from backend server ', data))
-        
+          .then(data => {
+            //ADD USER ID to find one and add the data ID...
+            console.log('response from backend server ', data)
+            axios.patch(`${process.env.REACT_APP_API}/userposts`, { id: localStorage.getItem('id'), post_id: data._id  }, { headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            }})
+          });
+
+
+
           //this.props.navigate('/')
-    
           //event.preventDefault();
       }
 

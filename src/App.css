@@ -746,6 +746,7 @@ a{
 }
 
 .profile-img2{
+  background-image: url("https://res.cloudinary.com/diyvxyidy/image/upload/v1674172648/users/zeuorx3lapvrgwgligky.jpg");
   width: 65px;
   height: 65px;
   object-fit: cover;
@@ -879,6 +880,15 @@ a{
 }
 .wrapper-class{
   width: auto
+}
+
+.account-img-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.input-update-profile{
+  margin: 30px;
 }
 
 @media only screen and (max-width: 600px) {

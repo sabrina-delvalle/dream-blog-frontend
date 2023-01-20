@@ -80,8 +80,9 @@ export default function Header() {
       console.log(res.data)
       //setLogUser(false)
       //document.location.reload() 
-      Cookies.remove('userSession')
-      Cookies.remove('Token')
+      Cookies.remove('userSession');
+      Cookies.remove('Token');
+      localStorage.clear();
       document.location.replace('/')
   })}
 
