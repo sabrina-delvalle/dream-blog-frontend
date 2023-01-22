@@ -85,15 +85,22 @@ class FormRegister extends Component {
 /*       const res = await axios.postForm('register', formData)
     console.log(res); */
 
-
-  axios.post(`${process.env.REACT_APP_API}/register`, formData, { headers: {
-    "Content-Type": "multipart/form-data",
-    "Accept": "application/json"
-  }})
-      .then(response => console.log(response.data))
-      .catch(err => console.log(err))
+    const postRegister = async () => {
+      try{
+        const awaitRegister = await axios.post(`${process.env.REACT_APP_API}/register`, formData, { headers: {
+          "Content-Type": "multipart/form-data",
+          "Accept": "application/json"
+        }})
+            .then(response => console.log(response.data))
+            .catch(err => console.log(err))
+        console.log(awaitRegister);
+        this.props.navigate('/done') 
+      }catch(err){
+        console.log(err);
+      }
+    }
+    postRegister();
   
-  this.props.navigate('/done') 
   //event.preventDefault();
 
 
