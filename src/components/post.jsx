@@ -77,7 +77,7 @@ export default function Post() {
       
           console.log('bearer, before get: ', bearer)
           
-          if(bearer){
+          /* if(bearer){
             console.log('its passing away');
             fetch(`${process.env.REACT_APP_API}/user`, {
              method: 'GET',
@@ -98,7 +98,39 @@ export default function Post() {
              setImage(data.image)
              setUser(true)
            })
-          } 
+          } */
+
+          const getUser = async() => {
+            try{
+                if(bearer){
+                  console.log('its passing away');
+                  const retrieveUser = await fetch(`${process.env.REACT_APP_API}/user`, {
+                  method: 'GET',
+                  headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": bearer
+                  }
+                })
+                .then(response => response.json())
+                .then(data => {
+                  //data.password = "";
+                  console.log('data retrieve: ', data);
+                  if(!data.name){
+                    return setUser(false)
+                  }
+                  setName(data.name.toUpperCase()[0] + data.name.slice(1))
+                  setImage(data.image)
+                  setUser(true)
+                })
+                  console.log(retrieveUser);
+                }
+            }catch(err){
+              console.log(err);
+            }
+          }
+          getUser();
+    
     }, [id, user, name, bearer])
 
     function handleComment() {
