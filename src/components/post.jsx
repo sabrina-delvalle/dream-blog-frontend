@@ -48,7 +48,7 @@ export default function Post() {
 
         const retrieveToken = async () => {
             try{
-              await axios.get(`${process.env.REACT_APP_API}/token`, {
+              const awaitToken = await axios.get(`${process.env.REACT_APP_API}/token`, {
                 headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
@@ -61,6 +61,7 @@ export default function Post() {
                   setBearer(`Bearer ${response.data['token']}`)
                 }
               })
+              console.log('token api retrieve: ', awaitToken);
               //.then(response => response.json())
       /*         .then(data=>{
                 console.log('previous token, ', data);
