@@ -104,23 +104,22 @@ export default function Post() {
             try{
                 if(bearer){
                   console.log('its passing away');
-                  const retrieveUser = await fetch(`${process.env.REACT_APP_API}/user`, {
-                  method: 'GET',
-                  headers: {
+                  const retrieveUser = await axios.get(`${process.env.REACT_APP_API}/user`, 
+                  {
+                    headers: {
                     "Content-Type": "application/json",
                     "Accept": "application/json",
                     "Authorization": bearer
-                  }
+                    }
                 })
-                .then(response => response.json())
-                .then(data => {
+                .then(response => { 
                   //data.password = "";
-                  console.log('data retrieve: ', data);
-                  if(!data.name){
+                  console.log('data retrieve: ', response.data);
+                  if(!response.data.name){
                     return setUser(false)
                   }
-                  setName(data.name.toUpperCase()[0] + data.name.slice(1))
-                  setImage(data.image)
+                  setName(response.data.name.toUpperCase()[0] + response.data.name.slice(1))
+                  setImage(response.data.image)
                   setUser(true)
                 })
                   console.log(retrieveUser);
