@@ -15,9 +15,9 @@ import Account from './Pages/account';
 import { UserContext } from './UserContext';
 import ProtectedRoutes from './ProtectedRoutes';
 import userAuth from './hooks/userAuth';
-import { QueryClient, QueryClientProvider } from 'react-query';
+//import { QueryClient, QueryClientProvider } from 'react-query';
 
-const queryClient = new QueryClient();
+//const queryClient = new QueryClient();
 
 function App() {
 
@@ -26,7 +26,6 @@ function App() {
 
 
   return (
-    <QueryClientProvider client={queryClient}>
       <Router>
           <UserContext.Provider value={providerValue}>
             <Routes>
@@ -48,7 +47,6 @@ function App() {
             </Routes>
           </UserContext.Provider>
       </Router>
-    </QueryClientProvider>
   );
 }
 

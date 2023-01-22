@@ -154,7 +154,7 @@ export default function Post() {
     <div className="article-section top-article">
         <h2 className='post-title'>{post.title}</h2>
         <div className='ssrr-article'>
-        <img src={post['images'][0]} alt="time" className='image' width='800px'></img>
+        <img src={post['images']} alt="time" className='image' width='800px'></img>
 {/*             <img src={post['image']} alt="time" className='image' width='800px'></img>
  */}                <div className='ssrr'>
                 <a href='/'><img src={instagram} alt='fb' width='27px' className='ssrr-img'></img></a>
