@@ -25,7 +25,10 @@ export default function Post() {
     let { id } = useParams();
 
     useEffect( () => {
-        axios.get(`${process.env.REACT_APP_API}/post/${id}`, {
+
+      const getPost = async() => {
+        try{
+          const data = await axios.get(`${process.env.REACT_APP_API}/post/${id}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
@@ -35,8 +38,15 @@ export default function Post() {
             console.log('before setting POST: ', response);
             setPost(response.data[0])
         })
+        console.log(data);
+        }catch(err){
+          console.log(err);
+        }
+      }
+      getPost();
+        
 
-        async function retrieveToken(){
+        const retrieveToken = async () => {
             try{
               await axios.get(`${process.env.REACT_APP_API}/token`, {
                 headers: {
