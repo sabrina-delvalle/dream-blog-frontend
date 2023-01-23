@@ -247,7 +247,7 @@ export default function Post() {
                 </div>                
         </div>
                 {
-                    localStorage.setItem("userComment") ? 
+                    localStorage.getItem("userComment") ? 
                     <div className="comments-wrapper"><textarea className="comments" placeholder="write comment" onChange={handleText} value={textArea}/>
                     <button className="post-button2" onClick={handleComment}>Post</button></div> 
                     :
