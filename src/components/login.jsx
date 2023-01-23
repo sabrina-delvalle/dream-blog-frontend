@@ -62,9 +62,7 @@ export default function Login() {
         localStorage.setItem('userlastname', JSON.stringify(res.data.user.lastname))
         localStorage.setItem('image', JSON.stringify(res.data.user.image))
         localStorage.setItem('id', res.data.user._id);
-        /* localStorage.setItem("nameComment", res.data.user.name.toUpperCase()[0] + res.data.user.name.slice(1))
-        localStorage.setItem("imageProfile", res.data.user.image)
-        localStorage.setItem("userComment", true) */
+        localStorage.setItem("userComment", true)
         Cookies.set('userSession', true, { expires: 365, secure: true, sameSite: 'strict' });
         Cookies.set('Token', res.data.token, { expires: 365, secure: true, sameSite: 'strict' })
 
