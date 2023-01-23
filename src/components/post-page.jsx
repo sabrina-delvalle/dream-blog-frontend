@@ -24,7 +24,8 @@ export default class PostPage extends Component {
         const contentState = convertFromRaw(content);
         const name = JSON.parse(localStorage.getItem('username'))[0].toUpperCase() + JSON.parse(localStorage.getItem('username')).slice(1);
         const lastname = JSON.parse(localStorage.getItem('userlastname'))[0].toUpperCase() + JSON.parse(localStorage.getItem('userlastname')).slice(1);
-        this.state ={title: '', autor: `${name} ${lastname}`, quote:'', text: '', images: [],/* editorState: EditorState.createEmpty(), */ contentState};  //content State JSON 
+        const profileImage = JSON.parse(localStorage.getItem('image'));
+        this.state ={title: '', autor: `${name} ${lastname}`, profileImage, quote:'', text: '', images: [],/* editorState: EditorState.createEmpty(), */ contentState};  //content State JSON 
         
         this.handleTitle = this.handleTitle.bind(this);
         this.handleAutor = this.handleAutor.bind(this);
@@ -72,7 +73,8 @@ export default class PostPage extends Component {
             autor: this.state.autor,
             quote: this.state.quote,
             article: this.state.contentState,
-            images: this.state.images
+            images: this.state.images,
+            profileImage: this.state.profileImage
           })
         })
           .then(response => response.json())
@@ -83,12 +85,11 @@ export default class PostPage extends Component {
               "Content-Type": "application/json",
               "Accept": "application/json"
             }})
+            .then(response => {
+              console.log(response);
+              document.location.replace('/')
+            })
           });
-
-
-
-          this.props.navigate('/')
-          //event.preventDefault();
       }
 
       onEditorStateChange = (editorState) => {

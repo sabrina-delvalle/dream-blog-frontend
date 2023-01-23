@@ -18,37 +18,34 @@ export default function Post() {
 
     const [ post, setPost ] = useState([]);
     const [textArea, setTextArea] = useState("");
-    //const [user, setUser] = useState(false);
+    const [user, setUser] = useState(false);
     //const [name, setName] = useState('Login');
-    const [bearer, setBearer] = useState(undefined);
+    //const [bearer, setBearer] = useState(undefined);
     //const [image, setImage] = useState('')
     let { id } = useParams();
 
-    useEffect( () => {
-
-      const getPost = async() => {
-        try{
-          const data = await axios.get(`${process.env.REACT_APP_API}/post/${id}`, {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-            }
-        })
-        .then(response => {
-            console.log('before setting POST: ', response);
-            setPost(response.data[0])
-        })
-        console.log(data);
-        }catch(err){
-          console.log(err);
+    const fetchData = async () => {
+      let bearer = undefined
+      try{
+        //bearer = 'starting getPost'
+        const getPost = async() => {
+          await axios.get(`${process.env.REACT_APP_API}/post/${id}`, {
+              headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+              }
+          })
+          .then(response => {
+              console.log('before setting POST: ', response);
+              setPost(response.data[0])
+          })  
         }
-      }
-      getPost();
         
-
+        getPost();
+    
         const retrieveToken = async () => {
             try{
-              const awaitToken = await axios.get(`${process.env.REACT_APP_API}/token`, {
+              await axios.get(`${process.env.REACT_APP_API}/token`, {
                 headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
@@ -58,10 +55,13 @@ export default function Post() {
                 console.log(response.data);
                 console.log('previous token, ', response);
                 if(response.data['token']) {
-                  setBearer(`Bearer ${response.data['token']}`)
+                  //setBearer(`Bearer ${response.data['token']}`)
+                  bearer = `Bearer ${response.data['token']}`
+                  setUser(true)
                 }
               })
-              console.log('token api retrieve: ', awaitToken);
+              console.log('token api retrieve, setting bearer: ', bearer);
+              //console.log(awaitToken);
               //.then(response => response.json())
       /*         .then(data=>{
                 console.log('previous token, ', data);
@@ -73,69 +73,74 @@ export default function Post() {
               console.log(err)
             }
           }
-          retrieveToken()
-      
-          console.log('bearer, before get: ', bearer)
+        retrieveToken()
           
-          /* if(bearer){
-            console.log('its passing away');
-            fetch(`${process.env.REACT_APP_API}/user`, {
-             method: 'GET',
-             headers: {
-               "Content-Type": "application/json",
-               "Accept": "application/json",
-               "Authorization": bearer
-             }
-           })
-           .then(response => response.json())
-           .then(data => {
-             //data.password = "";
-             console.log('data retrieve: ', data);
-             if(!data.name){
-               return setUser(false)
-             }
-             setName(data.name.toUpperCase()[0] + data.name.slice(1))
-             setImage(data.image)
-             setUser(true)
-           })
-          } */
-
-          const getUser = async() => {
-            try{
-                if(bearer){
-                  console.log('its passing away');
-                  const retrieveUser = await axios.get(`${process.env.REACT_APP_API}/user`, 
-                  {
-                    headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "Authorization": bearer
-                    }
-                })
-                .then(response => { 
-                  //data.password = "";
-                  console.log('data retrieve: ', response.data);
-                  if(!response.data.name){
-                    //return setUser(false)
-                    localStorage.setItem("userComment", true)
-                    return null
-                  }
-/*                   localStorage.setItem("nameComment", response.data.name.toUpperCase()[0] + response.data.name.slice(1))
-                  localStorage.setItem("imageProfile", response.data.image)
-                  localStorage.setItem("userComment", true) */
-                  //setName(response.data.name.toUpperCase()[0] + response.data.name.slice(1))
-                  //setImage(response.data.image)
-                  //setUser(true)
-                })
-                  console.log("retrive USER!::: ", retrieveUser);
-                }
-            }catch(err){
-              console.log(err);
+        console.log('bearer, before get: ', bearer)
+              
+        /* if(bearer){
+          console.log('its passing away');
+          fetch(`${process.env.REACT_APP_API}/user`, {
+            method: 'GET',
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": bearer
             }
-          }
-          getUser();
+          })
+          .then(response => response.json())
+          .then(data => {
+            //data.password = "";
+            console.log('data retrieve: ', data);
+            if(!data.name){
+              return setUser(false)
+            }
+            setName(data.name.toUpperCase()[0] + data.name.slice(1))
+            setImage(data.image)
+            setUser(true)
+          })
+        } */
     
-    }, [id, bearer])
+        const getUser = async() => {
+          try{
+              if(bearer){
+                console.log('its passing away');
+                const retrieveUser = await axios.get(`${process.env.REACT_APP_API}/user`, 
+                {
+                  headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json",
+                  "Authorization": bearer
+                  }
+              })
+              .then(response => { 
+                //data.password = "";
+                console.log('data retrieve: ', response.data);
+                setUser(true)
+    /*                   localStorage.setItem("nameComment", response.data.name.toUpperCase()[0] + response.data.name.slice(1))
+                localStorage.setItem("imageProfile", response.data.image)
+                localStorage.setItem("userComment", true) */
+                //setName(response.data.name.toUpperCase()[0] + response.data.name.slice(1))
+                //setImage(response.data.image)
+                
+              })
+                console.log("retrive USER!::: ", retrieveUser);
+              }
+          }catch(err){
+            console.log(err);
+          }
+        }
+        getUser();
+
+      }catch(err){
+        console.log('fetch data error: ', err);
+      }
+    }
+
+    useEffect (() => {
+      console.log('ready mounted...');
+      fetchData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     function handleComment() {
         
@@ -193,9 +198,7 @@ export default function Post() {
         .then(data => console.log(data))
 
         setPost([post['comments'].pop()])
-
     }
-
 
     return (
     <div className="article-section top-article">
@@ -215,7 +218,7 @@ export default function Post() {
       
         <div className='post-article'>{parse(draftToHtml(post.article))}</div>
         <div className="user-id">
-            <img src={localStorage.getItem("imageProfile")} className="profile-img2" alt='user-img' width='80px'/>
+            <img src={post['autorProfilePic']} className="profile-img2" alt='user-img' width='80px'/>
 
             <p>{post.quote}</p>
             <p className="user-bio">Artista, escritora, más de 10 años en el entretenimiento Artista, escritora, más de 10 años en el entretenimiento</p>
@@ -244,7 +247,7 @@ export default function Post() {
                 </div>                
         </div>
                 {
-                    localStorage.getItem("userComment") ? 
+                    user ? 
                     <div className="comments-wrapper"><textarea className="comments" placeholder="write comment" onChange={handleText} value={textArea}/>
                     <button className="post-button2" onClick={handleComment}>Post</button></div> 
                     :
@@ -255,5 +258,4 @@ export default function Post() {
 
     </div>
     );
-
-} 
+}

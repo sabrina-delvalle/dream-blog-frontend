@@ -41,7 +41,7 @@ export default function Header() {
     }
     retrieveToken()
 
-    console.log('bearer, before get: ', Cookies.get('Token'))
+    //console.log('bearer, before get: ', Cookies.get('Token'))
     if(Cookies.get('Token')) token = true
     
     if(token){
@@ -57,7 +57,7 @@ export default function Header() {
      .then(response => response.json())
      .then(data => {
        //data.password = "";
-       console.log('data retrieve: ', data);
+       //console.log('data retrieve: ', data);
        if(!data.name){
          return setUser(false)
        }
