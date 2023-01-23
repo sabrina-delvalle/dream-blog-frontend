@@ -18,10 +18,10 @@ export default function Post() {
 
     const [ post, setPost ] = useState([]);
     const [textArea, setTextArea] = useState("");
-    const [user, setUser] = useState(false);
-    const [name, setName] = useState('Login');
+    //const [user, setUser] = useState(false);
+    //const [name, setName] = useState('Login');
     const [bearer, setBearer] = useState(undefined);
-    const [image, setImage] = useState('')
+    //const [image, setImage] = useState('')
     let { id } = useParams();
 
     useEffect( () => {
@@ -116,13 +116,18 @@ export default function Post() {
                   //data.password = "";
                   console.log('data retrieve: ', response.data);
                   if(!response.data.name){
-                    return setUser(false)
+                    //return setUser(false)
+                    localStorage.setItem("userComment", true)
+                    return null
                   }
-                  setName(response.data.name.toUpperCase()[0] + response.data.name.slice(1))
-                  setImage(response.data.image)
-                  setUser(true)
+/*                   localStorage.setItem("nameComment", response.data.name.toUpperCase()[0] + response.data.name.slice(1))
+                  localStorage.setItem("imageProfile", response.data.image)
+                  localStorage.setItem("userComment", true) */
+                  //setName(response.data.name.toUpperCase()[0] + response.data.name.slice(1))
+                  //setImage(response.data.image)
+                  //setUser(true)
                 })
-                  console.log(retrieveUser);
+                  console.log("retrive USER!::: ", retrieveUser);
                 }
             }catch(err){
               console.log(err);
@@ -130,7 +135,7 @@ export default function Post() {
           }
           getUser();
     
-    }, [id, user, name, bearer])
+    }, [id, bearer])
 
     function handleComment() {
         
@@ -210,7 +215,7 @@ export default function Post() {
       
         <div className='post-article'>{parse(draftToHtml(post.article))}</div>
         <div className="user-id">
-            <img src={image} className="profile-img2" alt='user-img' width='80px'/>
+            <img src={localStorage.getItem("imageProfile")} className="profile-img2" alt='user-img' width='80px'/>
 
             <p>{post.quote}</p>
             <p className="user-bio">Artista, escritora, más de 10 años en el entretenimiento Artista, escritora, más de 10 años en el entretenimiento</p>
@@ -225,7 +230,7 @@ export default function Post() {
                                                     <div key={post['comments'].indexOf(elem)} >
                                                         <div className='comment-wrapper'>
                                                         {
-                                                            user ? 
+                                                            localStorage.getItem("userComment") ? 
                                                             <img src={dots} alt='info-extra' className="dots-info" onClick={()=>handleDelete(elem)} /> 
                                                             : <p></p>
                                                         }
@@ -239,7 +244,7 @@ export default function Post() {
                 </div>                
         </div>
                 {
-                    user ? 
+                    localStorage.getItem("userComment") ? 
                     <div className="comments-wrapper"><textarea className="comments" placeholder="write comment" onChange={handleText} value={textArea}/>
                     <button className="post-button2" onClick={handleComment}>Post</button></div> 
                     :
