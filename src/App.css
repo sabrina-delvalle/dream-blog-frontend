@@ -1099,6 +1099,9 @@ a{
     border-radius: 5px;
     font-size: 13px;
   }
+.nav-item{
+  font-size: 13.7px;
+}
   .post-line{
     border: 1px solid rgb(182, 179, 179);
     border-radius: 30px;
