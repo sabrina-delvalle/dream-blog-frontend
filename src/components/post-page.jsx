@@ -87,7 +87,7 @@ export default class PostPage extends Component {
 
 
 
-          //this.props.navigate('/')
+          this.props.navigate('/')
           //event.preventDefault();
       }
 
