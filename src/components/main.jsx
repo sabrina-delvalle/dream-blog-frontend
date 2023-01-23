@@ -93,8 +93,7 @@ export default function Main() {
   return (
   <div>
     <div className='article-section'>{arts}</div>
-
- {end === true ? <p className='last'>──────────────────latest──────────────────</p> : <button onClick={()=> {
+    {end === true ? <p className='last'>──────────────────latest──────────────────</p> : article ? <p style={{textAlign: 'center', padding: '100px', fontSize: '30px', color: "gray"}} >loading...</p> : <button onClick={()=> {
       setNewPost(newPost + 1)
       setLast(article[article.length-1]._id.toString())
       console.log('articles when click: ', article);

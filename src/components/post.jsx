@@ -18,7 +18,7 @@ export default function Post() {
 
     const [ post, setPost ] = useState([]);
     const [textArea, setTextArea] = useState("");
-    const [user, setUser] = useState(false);
+    //const [user, setUser] = useState(false);
     //const [name, setName] = useState('Login');
     //const [bearer, setBearer] = useState(undefined);
     //const [image, setImage] = useState('')
@@ -57,7 +57,7 @@ export default function Post() {
                 if(response.data['token']) {
                   //setBearer(`Bearer ${response.data['token']}`)
                   bearer = `Bearer ${response.data['token']}`
-                  setUser(true)
+                  //setUser(true)
                 }
               })
               console.log('token api retrieve, setting bearer: ', bearer);
@@ -115,7 +115,7 @@ export default function Post() {
               .then(response => { 
                 //data.password = "";
                 console.log('data retrieve: ', response.data);
-                setUser(true)
+                //setUser(true)
     /*                   localStorage.setItem("nameComment", response.data.name.toUpperCase()[0] + response.data.name.slice(1))
                 localStorage.setItem("imageProfile", response.data.image)
                 localStorage.setItem("userComment", true) */
