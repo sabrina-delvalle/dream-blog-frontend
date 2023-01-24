@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import draftToHtml from 'draftjs-to-html'
 import parse from 'html-react-parser';
+import { FallingLines } from 'react-loader-spinner';
 
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] ='application/json';
@@ -204,9 +205,18 @@ export default function Post() {
     <div className="article-section top-article">
         <h2 className='post-title'>{post.title}</h2>
         <div className='ssrr-article'>
-        <img src={post['images']} alt="time" className='image' width='800px'></img>
-{/*             <img src={post['image']} alt="time" className='image' width='800px'></img>
- */}                <div className='ssrr'>
+          {
+            post['comments'] ? <img src={post['images']} alt="time" className='image' width='600px'></img> : <div style={{textAlign: 'center', padding: '50px', fontSize: '30px', color: "gray", display: 'flex', justifyContent: "center", alignItems: "center"}}>
+            <FallingLines
+                color="gray"
+                width="70"
+                visible={true}
+                ariaLabel='falling-lines-loading'
+                                    />
+            </div>
+          }
+        
+                <div className='ssrr'>
                 <a href='/'><img src={instagram} alt='fb' width='27px' className='ssrr-img'></img></a>
                 <a href='/'><img src={facebook} alt='fb' width='27px' className='ssrr-img'></img></a>
                 <a href='/'><img src={twitter} alt='fb' width='27px' className='ssrr-img'></img></a>
@@ -214,7 +224,15 @@ export default function Post() {
         </div>
         
         {/* <p className='date'> Sun fix, {post['date'].split('-')[2].slice(0, 2)}/{post['date'].split('-')[1]}/{post['date'].split('-')[0]} </p> */}
-        {post['date'] ? <p className='date'> Sun fix, {post['date'].split('-')[2].slice(0, 2)}/{post['date'].split('-')[1]}/{post['date'].split('-')[0]} </p> : <p>Loading...</p>}
+        {post['date'] ? <p className='date'> Sun fix, {post['date'].split('-')[2].slice(0, 2)}/{post['date'].split('-')[1]}/{post['date'].split('-')[0]} </p> : <div style={{textAlign: 'center', padding: '50px', fontSize: '30px', color: "gray", display: 'flex', justifyContent: "center", alignItems: "center"}}>
+              <FallingLines
+                  color="gray"
+                  width="70"
+                  visible={true}
+                  ariaLabel='falling-lines-loading'
+                                      />
+              </div>
+        }
       
         <div className='post-article'>{parse(draftToHtml(post.article))}</div>
         <div className="user-id">
@@ -243,7 +261,14 @@ export default function Post() {
                                                         </div>
                                                         <p className="comment-date">Mon, Sep 30th, 2023</p>
                                                     </div>)
-                                                    }</div> : <p>Loading...</p> }
+                                                    }</div> : <div style={{textAlign: 'center', padding: '50px', fontSize: '30px', color: "gray", display: 'flex', justifyContent: "center", alignItems: "center"}}>
+                                                    <FallingLines
+                                                        color="gray"
+                                                        width="70"
+                                                        visible={true}
+                                                        ariaLabel='falling-lines-loading'
+                                                                            />
+                                          </div> }
                 </div>                
         </div>
                 {

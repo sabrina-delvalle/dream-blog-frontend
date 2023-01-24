@@ -117,7 +117,7 @@ function Logged(props){
     <a href={`${process.env.REACT_APP_ORIGIN_PAGE}/profile`} className="log-link">Welcome, {props.name}</a> 
     
 
-    <img src={props.userImg} width='50px' className="profile-img" alt='profile-img'/>
+    <a href={`${process.env.REACT_APP_ORIGIN_PAGE}/profile`}><img src={props.userImg} width='50px' className="profile-img" alt='profile-img'></img></a>
     <button className="logout-link" onClick={props.clearCookie}>log Out</button>
   </div>
   )

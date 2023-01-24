@@ -8,6 +8,7 @@ import twitter from '../images/twitter.png'
 import instagram from '../images/instagram.png'
 import draftToHtml from 'draftjs-to-html'
 import parse from 'html-react-parser';
+import { FallingLines } from 'react-loader-spinner';
 
 
 import React from "react";
@@ -17,6 +18,7 @@ import { useEffect } from 'react';
 export default function Main() {
 
   const [article, setArticle] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [charged, setCharged] = useState(false);
   const [end, setENd] = useState(false);
   const [last, setLast] = useState('');
@@ -41,6 +43,8 @@ export default function Main() {
           setENd(true)
           return setArticle((curArticles) => [...curArticles, data[0]])}
         setArticle((curArticles) => [...curArticles, data[1]])
+        
+        //console.log('Value of LOADING: ', loading);
         //setLast(article[article.length-1]._id.toString()) 
         //console.log('new list: ', article); 
         console.log('latest: ', last) 
@@ -64,6 +68,7 @@ export default function Main() {
         console.log('data send: ', data[data.length-1]._id.toString());
         console.log('posts: ', data)
         console.log('first elemtn', data[0]);
+        setLoading(false);
         return setArticle(data)
       })
     }
@@ -93,10 +98,22 @@ export default function Main() {
   return (
   <div>
     <div className='article-section'>{arts}</div>
-    {end === true ? <p className='last'>──────────────────latest──────────────────</p> : article ? <p style={{textAlign: 'center', padding: '100px', fontSize: '30px', color: "gray"}} >loading...</p> : <button onClick={()=> {
+    {loading === true ? <div style={{textAlign: 'center', padding: '50px', fontSize: '30px', color: "gray", display: 'flex', justifyContent: "center", alignItems: "center"}}>
+              <FallingLines
+                  color="gray"
+                  width="70"
+                  visible={true}
+                  ariaLabel='falling-lines-loading'
+                                      />
+    </div>  : end === true ? <p className='last'>──────────────────latest──────────────────</p> : <button onClick={()=> {
+      setLoading(true);
       setNewPost(newPost + 1)
       setLast(article[article.length-1]._id.toString())
       console.log('articles when click: ', article);
+      //setLoading(false);
+      setTimeout(() => {
+        setLoading(false)
+      }, 2000);
       }} className='button-retrieve'> + </button>}
   </div>
   );
