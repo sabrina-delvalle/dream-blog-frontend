@@ -637,13 +637,12 @@ a{
   align-items: center;
   justify-content: center;
   background-color: #86959a;
-  margin: 2%;
   padding: 1%;
   border-radius: 10px;
   color: white;
   width: 120px;
   height: 40px;
-  margin-left: -220px;
+  margin-left: -185%;
   cursor: pointer;
   z-index: 1;
 }
@@ -661,20 +660,19 @@ a{
   align-items: center;
   justify-content: center;
   background-color: #a9b6ba;
-  margin: 2%;
   padding: 1%;
   border-radius: 10px;
   color: white;
   width: 120px;
   height: 40px;
-  margin-left: -220px;
+  margin-left: -185%;
   cursor: pointer;
   z-index: 1;
 }
 
 .profile-image{
   position: absolute;
-  padding: 3.5%;
+  margin-right: 20px;
   color: #86959a; 
 }
 
@@ -1209,6 +1207,7 @@ a{
   margin-bottom: 8%;
 }
 .imageBtn{
+  -webkit-margin-before: -200px;
   position: relative;
   display: flex;
   align-items: center;
