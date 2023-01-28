@@ -19,7 +19,7 @@ export default function Header() {
   useEffect( () => {
     const retrieveToken = async () => {
       try{
-          const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, {
+          const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, null, {
           headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
