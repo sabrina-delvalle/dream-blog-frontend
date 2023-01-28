@@ -17,8 +17,7 @@ export default function Header() {
   //const { logUser, setLogUser } = useContext(UserContext);
   
   useEffect( () => {
-    let token = undefined;
-    async function retrieveToken(){
+    const retrieveToken = async () => {
       try{
           const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, {
           headers: {
@@ -30,7 +29,7 @@ export default function Header() {
           console.log(response.data);
           console.log('previous token, ', response);
           if(response.data['token']) {
-            setBearer(`Bearer ${response.data['token']}`)
+            setBearer(`Bearer ${response.data['token']}`);
             return response.data['token']
           }
         })
@@ -41,17 +40,20 @@ export default function Header() {
     }
     retrieveToken()
 
+    //console.log('retrieve token!');
+
     //console.log('bearer, before get: ', Cookies.get('Token'))
-    if(Cookies.get('Token')) token = true
-    
-    if(token){
-      console.log('its passing away');
+    //if(Cookies.get('Token')) token = true
+    console.log('New Token Check... v2', bearer);
+
+    if(bearer){
+      console.log("there s valid bearer...");
       fetch(`${process.env.REACT_APP_API}/user`, {
        method: 'GET',
        headers: {
          "Content-Type": "application/json",
          "Accept": "application/json",
-         "Authorization": `Bearer ${Cookies.get('Token')}`
+         "Authorization": bearer/* `Bearer ${Cookies.get('Token')}` */
        }
      })
      .then(response => response.json())
@@ -75,14 +77,16 @@ export default function Header() {
 
   const handleCookieDelete = () => {
     console.log('here handling cookie inside')
+    document.localStorage.clear();
+
     axios.get(`${process.env.REACT_APP_API}/clearcookie`, {withCredentials: true})
     .then((res) => {
       console.log(res.data)
       //setLogUser(false)
       //document.location.reload() 
       Cookies.remove('userSession');
-      Cookies.remove('Token');
-      localStorage.clear();
+      //localStorage.clear()
+      
       document.location.replace('/')
   })}
 

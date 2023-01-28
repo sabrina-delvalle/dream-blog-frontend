@@ -45,11 +45,11 @@ export default function Login() {
   axios.post(`${process.env.REACT_APP_API}/login`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      'Accept': 'plain/text'
+      'Accept': 'application/json'
     }
   })
       .then((res) => {
-      console.log('axios ', res.data)
+      console.log('axios user response... ', res.data)
       if (res.data === 'invalid user or password') {
         console.log('wrong user or password, please try again')
         setLogged(false)
@@ -57,6 +57,7 @@ export default function Login() {
       } else {
         //setLogUser(true);
         //console.log(logUser);
+        console.log('user...', res.data);
         console.log('local storageee: ', res.data.user)
         localStorage.setItem('username', JSON.stringify(res.data.user.name))
         localStorage.setItem('userlastname', JSON.stringify(res.data.user.lastname))
@@ -64,7 +65,7 @@ export default function Login() {
         localStorage.setItem('id', res.data.user._id);
         localStorage.setItem("userComment", true)
         Cookies.set('userSession', true, { expires: 365, secure: true, sameSite: 'strict' });
-        Cookies.set('Token', res.data.token, { expires: 365, secure: true, sameSite: 'strict' })
+        //Cookies.set('Token', res.data.token, { expires: 365, secure: true, sameSite: 'strict' })
 
 
         setLogged(true)
@@ -73,7 +74,7 @@ export default function Login() {
         document.location.replace('/')
       }
       //setLogUser(true);
-  })
+      })
         
 }
 

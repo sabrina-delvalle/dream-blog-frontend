@@ -14,7 +14,7 @@ import { FallingLines } from 'react-loader-spinner';
 import React from "react";
 import { useState } from 'react';
 import { useEffect } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 
 export default function Main() {
 
@@ -77,7 +77,7 @@ export default function Main() {
 
   //const images = [time, first, second, third, fourth]
 
-  const setCookie = () => {
+/*   const setCookie = () => {
     console.log('inside cookie check HTTPONLY');
 
     axios.post(`${process.env.REACT_APP_API}/setcookie`, {
@@ -109,7 +109,7 @@ export default function Main() {
       }
     })
     .then(response=> console.log(response))
-  }
+  } */
 
   let arts = article.map((elem) => 
     <li key={article.indexOf(elem)} className="top-article">
@@ -132,10 +132,10 @@ export default function Main() {
 
   return (
   <div>
-
-    <button style={{backgroundColor: "grey", padding: "1%", margin: "3%", display: "flex", alignItems: 'center', color: 'white', border: "none", borderRadius: '40px', cursor: 'pointer'}} onClick={setCookie}> Set Cookie </button>
+    {/* ONLY FOR COOKIE CHECK PURPOSES */}
+    {/* <button style={{backgroundColor: "grey", padding: "1%", margin: "3%", display: "flex", alignItems: 'center', color: 'white', border: "none", borderRadius: '40px', cursor: 'pointer'}} onClick={setCookie}> Set Cookie </button>
     <button style={{backgroundColor: "grey", padding: "1%", margin: "3%", display: "flex", alignItems: 'center', color: 'white', border: "none", borderRadius: '40px', cursor: 'pointer'}} onClick={checkCookie}> Check Cookie Backend</button>
-    <button style={{backgroundColor: "grey", padding: "1%", margin: "3%", display: "flex", alignItems: 'center', color: 'white', border: "none", borderRadius: '40px', cursor: 'pointer'}} onClick={deleteCookie}> Clear Cookie </button>
+    <button style={{backgroundColor: "grey", padding: "1%", margin: "3%", display: "flex", alignItems: 'center', color: 'white', border: "none", borderRadius: '40px', cursor: 'pointer'}} onClick={deleteCookie}> Clear Cookie </button> */}
 
 
     <div className='article-section'>{arts}</div>
