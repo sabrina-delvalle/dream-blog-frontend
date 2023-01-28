@@ -674,6 +674,7 @@ a{
   position: absolute;
   margin-right: 20px;
   color: #86959a; 
+  -moz-margin-end: auto;
 }
 
 .ssrr-register{
