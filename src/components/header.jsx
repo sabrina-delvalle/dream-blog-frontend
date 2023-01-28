@@ -30,7 +30,32 @@ export default function Header() {
           console.log('previous token, ', response);
           if(response.data['token']) {
             setBearer(`Bearer ${response.data['token']}`);
-            return response.data['token']
+              console.log("there s valid bearer...");
+              fetch(`${process.env.REACT_APP_API}/user`, {
+               method: 'GET',
+               headers: {
+                 "Content-Type": "application/json",
+                 "Accept": "application/json",
+                 "Authorization": `Bearer ${response.data['token']}`/* `Bearer ${Cookies.get('Token')}` */
+               }
+             })
+             .then(response => response.json())
+             .then(data => {
+               //data.password = "";
+               //console.log('data retrieve: ', data);
+               if(!data.name){
+                 return setUser(false)
+               }
+               setName(data.name.toUpperCase()[0] + data.name.slice(1))
+               setUserImg(data.image)
+               //console.log(name)
+               setUser(true);
+               //setLogUser(true);
+             })
+            
+            //if(user) setLogUser(true)
+            //console.log('before the fucking user to looooog, user: ', user, " and the logUser, ", logUser);
+            //return response.data['token']
           }
         })
         return bearerRequest;
@@ -44,34 +69,7 @@ export default function Header() {
 
     //console.log('bearer, before get: ', Cookies.get('Token'))
     //if(Cookies.get('Token')) token = true
-    console.log('New Token Check... v2', bearer);
-
-    if(bearer){
-      console.log("there s valid bearer...");
-      fetch(`${process.env.REACT_APP_API}/user`, {
-       method: 'GET',
-       headers: {
-         "Content-Type": "application/json",
-         "Accept": "application/json",
-         "Authorization": bearer/* `Bearer ${Cookies.get('Token')}` */
-       }
-     })
-     .then(response => response.json())
-     .then(data => {
-       //data.password = "";
-       //console.log('data retrieve: ', data);
-       if(!data.name){
-         return setUser(false)
-       }
-       setName(data.name.toUpperCase()[0] + data.name.slice(1))
-       setUserImg(data.image)
-       //console.log(name)
-       setUser(true);
-       //setLogUser(true);
-     })
-    }
-    //if(user) setLogUser(true)
-    //console.log('before the fucking user to looooog, user: ', user, " and the logUser, ", logUser);
+    //console.log('New Token Check... v2', bearer);
 
   }, [user, name, bearer])
 

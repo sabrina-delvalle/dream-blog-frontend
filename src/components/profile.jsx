@@ -19,6 +19,7 @@ export default function Userprofile() {
           //document.location.reload('/')
           Cookies.remove('userSession')
           Cookies.remove('Token')
+          localStorage.clear()
           document.location.replace('/')
       })}
 
