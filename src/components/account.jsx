@@ -49,7 +49,7 @@ function Account() {
           console.log(res.data)
           //document.location.reload('/')
           Cookies.remove('userSession')
-          //Cookies.remove('Token')
+          Cookies.remove('Token')
           localStorage.clear()
           document.location.replace('/')
       })}
