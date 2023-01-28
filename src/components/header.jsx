@@ -23,7 +23,6 @@ export default function Header() {
           {
             withCredentials: true, 
             headers: {
-                      "Content-Type": "application/json",
                       "Accept": "application/json",
             } 
           })
