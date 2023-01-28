@@ -20,13 +20,13 @@ export default function Header() {
     const retrieveToken = async () => {
       try{
           const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, 
-          { 
+          {
+            withCredentials: true, 
             headers: {
                       "Content-Type": "application/json",
                       "Accept": "application/json",
             } 
-          },
-          { withCredentials: true })
+          })
         .then(response => {
           console.log(response.data);
           console.log('previous token, ', response);
