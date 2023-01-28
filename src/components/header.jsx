@@ -17,7 +17,7 @@ export default function Header() {
   //const { logUser, setLogUser } = useContext(UserContext);
   
   useEffect( () => {
-    const retrieveToken = async () => {
+    /* const retrieveToken = async () => {
       try{
           const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, 
           {
@@ -38,7 +38,39 @@ export default function Header() {
       }catch(err){
         console.log(err)
     }
-    }
+    } */
+
+    const retrieveToken = async () => {
+    try{
+      fetch(`${process.env.REACT_APP_API}/token`, {
+        method: 'GET',
+        credentials: 'include', // Don't forget to specify this if you need cookies
+        headers: {
+          "Accept": "application/json",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        if(data['token']) {
+          setBearer(`Bearer ${data['token']}`);
+          //return response.data['token']
+        }
+      })
+
+      /* const bearerRequest = await axios.get(`${process.env.REACT_APP_API}/token`, 
+      {
+        withCredentials: true, 
+        headers: {
+                  "Accept": "application/json",
+        } 
+      }) */
+    //return bearerRequest;
+  }catch(err){
+    console.log(err)
+}
+}
+
     retrieveToken()
 
     //console.log('retrieve token!');
