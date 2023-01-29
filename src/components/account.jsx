@@ -42,9 +42,10 @@ function Account() {
         })
 }
     
-    async function clearCookie (){
+const clearCookie = async () => {
+    try{
         console.log('here handling cookie inside')
-        axios.get(`${process.env.REACT_APP_API}/clearcookie`, {withCredentials: true})
+        await axios.get(`${process.env.REACT_APP_API}/clearcookie`, {withCredentials: true})
           .then((res) => {
           console.log(res.data)
           //document.location.reload('/')
@@ -52,7 +53,11 @@ function Account() {
           Cookies.remove('Token')
           localStorage.clear()
           document.location.replace('/')
-      })}
+      })
+    }catch(err){
+        console.log(err);
+    }
+}
 
   return (
     <div className="main-profile">
