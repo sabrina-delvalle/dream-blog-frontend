@@ -689,9 +689,26 @@ a{
   color: white;
   width: 120px;
   height: 40px;
-  margin-left: -185%;
+  margin-left: -105%;
   cursor: pointer;
   z-index: 1;
+}
+.imageBtn-off{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #86959a;
+  padding: 1%;
+  border-radius: 10px;
+  color: white;
+  width: 120px;
+  height: 40px;
+  margin-left: -105%;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .arrow-info{
@@ -712,7 +729,7 @@ a{
   color: white;
   width: 120px;
   height: 40px;
-  margin-left: -185%;
+  margin-left: -105%;
   cursor: pointer;
   z-index: 1;
 }
@@ -720,9 +737,20 @@ a{
 .profile-image{
   position: absolute;
   margin-right: 20px;
-  color: #86959a; 
+  color: transparent; 
   -moz-margin-end: auto;
 }
+.profile-image-off{
+  display: none;
+  background-color: white;
+  padding: 5%;
+  color: transparent;
+  position: absolute;
+  margin-right: 20px;
+  cursor: not-allowed;
+  -moz-margin-end: auto;
+}
+
 
 .ssrr-register{
   display: flex;
@@ -945,6 +973,43 @@ a{
 .input-update-profile{
   margin: 30px;
 }
+
+.img-selector{
+  object-fit: cover;
+  object-position: 50% 50%;
+  margin: 3.5% 0 1% 0%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 2px solid rgb(108, 136, 132);
+  cursor: auto;
+  color: transparent;
+}
+.img-selector-off{
+  object-fit: cover;
+  object-position: 50% 50%;
+  margin: 3.5% 0 1% 0%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 2px solid rgb(108, 136, 132);
+  cursor: auto;
+  opacity: 0;
+}
+
+.loader-pic{
+  margin-top: -12%;
+  padding-bottom: 5%;
+  z-index: -1;
+}
+.loader-pic-on{
+  margin-top: -12%;
+  padding-bottom: 5%;
+  z-index: 1;
+}
+
+
+
 
 @media only screen and (max-width: 675px) {
   /* For phones: */
@@ -1226,6 +1291,40 @@ a{
     color: #606d70; 
     font-size: 16px
 }
+.input-2 { 
+  margin: 4% 0 0 0;
+  width: 60%; 
+  height: 30px;
+  color: #606d70; 
+  font-size: 16px;
+  border: 2px solid rgb(249, 116, 116);
+  outline: none
+}
+.input-3 { 
+  margin: 4% 0 0 0;
+  width: 60%; 
+  height: 30px;
+  color: #606d70; 
+  font-size: 16px;
+  border: 2px solid rgb(87, 216, 124);
+  outline: none;
+}
+.input-4 { 
+  margin: 4% 0 0 0;
+  width: 60%; 
+  height: 30px;
+  color: #606d70; 
+  font-size: 16px;
+}
+.input-4:focus { 
+  margin: 4% 0 0 0;
+  width: 60%; 
+  height: 30px;
+  color: #606d70; 
+  font-size: 16px;
+  border: 2px solid rgb(249, 116, 116);
+}
+
 .centerForm { 
   margin: auto;
   display: flex;
@@ -1267,7 +1366,24 @@ a{
   color: white;
   width: 120px;
   height: 40px;
-  margin-left: -220px;
+  margin-left: -105%;
+  cursor: pointer;
+  z-index: 1;
+}
+.imageBtn:hover{
+  -webkit-margin-before: -200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #bdc8cb;
+  margin: 2%;
+  padding: 1%;
+  border-radius: 10px;
+  color: white;
+  width: 120px;
+  height: 40px;
+  margin-left: -105%;
   cursor: pointer;
   z-index: 1;
 }
@@ -1291,6 +1407,32 @@ a{
   margin-bottom: 40px;
   border-width: 0px;
   cursor: pointer;
+}
+.submit-register:hover{
+  width: 20%; 
+  height: 40px;
+  color: white; 
+  font-size: 15px;
+  background-color: #aab9bf;
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-width: 0px;
+  cursor: pointer;
+}
+.submit-register-off{
+  width: 20%; 
+  height: 40px;
+  color: white; 
+  font-size: 15px;
+  background-color: #d5e7ed;
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-bottom: 0.3%;
+  border-width: 0px;
+  cursor: pointer;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 .input-1-log { 
   margin: 4% 0 0 0;
@@ -1355,6 +1497,38 @@ a{
 }
 .rdw-image-modal{
   margin-left: -200px;
+}
+.img-selector{
+  object-fit: cover;
+  object-position: 50% 50%;
+  margin: 10% 0 1% 0%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 2px solid rgb(108, 136, 132);
+  cursor: auto;
+  color: transparent;
+}
+.img-selector-off{
+  object-fit: cover;
+  object-position: 50% 50%;
+  margin: 10% 0 1% 0%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 2px solid rgb(108, 136, 132);
+  cursor: auto;
+  opacity: 0;
+}
+.loader-pic{
+  margin-top: -31%;
+  padding-bottom: 5%;
+  z-index: -1;
+}
+.loader-pic-on{
+  margin-top: -31%;
+  padding-bottom: 5%;
+  z-index: 1;
 }
 
 }

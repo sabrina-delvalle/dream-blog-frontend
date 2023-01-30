@@ -6,6 +6,7 @@ import twitter from '../images/twitter.png'
 import instagram from '../images/instagram.png'
 //import userImage from '../images/user.png'
 import axios from 'axios'
+import { TailSpin } from 'react-loader-spinner';
 
 
 axios.defaults.withCredentials = true;
@@ -14,7 +15,7 @@ axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 class FormRegister extends Component {
   constructor(props){
     super(props);
-    this.state ={name: '', lastname: '', username: '', email: '', password: '', image: [], alertMessage: '', validUsername1: false, validUsername2: false, validEmail1: false, validEmail2: false, validPassword1: false}; 
+    this.state ={name: '', lastname: '', username: '', email: '', password: '', profilePic: 'https://res.cloudinary.com/diyvxyidy/image/upload/v1671549902/users/user_bh6ggf.png', image: [], alertMessage: '', validUsername1: false, validUsername2: false, validEmail1: false, validEmail2: false, validPassword1: false, validProfilePic: false}; 
     
     this.handleName = this.handleName.bind(this);
     this.handleLastname = this.handleLastname.bind(this);
@@ -38,8 +39,24 @@ class FormRegister extends Component {
   }
 
   handleImage(event){
+    this.setState({validProfilePic: true})
     //console.log('value of image: ', event.target)
-    this.setState({image: event.target.files[0]})
+    //this.setState({image: event.target.files[0]})
+
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+
+    axios.post(`${process.env.REACT_APP_API}/profilepic`, formData, { headers: {
+      "Content-Type": "multipart/form-data",
+      "Accept": "application/json"
+    }})
+    .then(response => {
+      console.log(response);
+      this.setState({profilePic: response.data.image})
+      this.setState({image: response.data.image})
+      this.setState({validProfilePic: false})
+    })
+    //console.log(event.target.files[0]);
     //console.log('image ', event.target.files[0])
   }
 
@@ -64,18 +81,18 @@ class FormRegister extends Component {
       .then(response => response.json())
       .then(data => {
         data.valid ? this.setState({ validUsername2: true }) : this.setState({ validUsername2: false })
-        console.log('data from user server: ', data);
+        //console.log('data from user server: ', data);
       })
   }
 
   handleEmail(event) {
     //verify then it can be accessed. no repeated current in use
     const lastChar = event.target.value.split('');
+    const lastCharEmail = event.target.value.split('@');
     this.setState({ email: event.target.value })
+    //console.log(lastCharEmail);
     if(lastChar.some(e => e === '@')){
-      this.setState({validEmail1: true})
-    }else{
-      this.setState({validEmail1: false})
+      lastCharEmail[1].split('').some(e => e === ".") && lastCharEmail[1].split('.')[1].length >= 2   ? this.setState({validEmail1: true}) : this.setState({validEmail1: false}) 
     }
 
       fetch(`${process.env.REACT_APP_API}/checkuser`, {
@@ -92,7 +109,7 @@ class FormRegister extends Component {
       .then(response => response.json())
       .then(data => {
         data.valid ? this.setState({ validEmail2: true }) : this.setState({ validEmail2: false })
-        console.log('data from user server: ', data);
+        //console.log('data from user server: ', data);
       })
   }
 
@@ -127,7 +144,7 @@ class FormRegister extends Component {
       formData.append('username', this.state.username);
       formData.append('email', this.state.email);
       formData.append('password', this.state.password);
-      formData.append('file', this.state.image);
+      formData.append('image', this.state.image);
       
       
       console.log('FORM  image from previous data: ', formData);
@@ -189,9 +206,22 @@ class FormRegister extends Component {
                 <input type='email' value={this.state.email} onChange={this.handleEmail} className={this.state.validEmail1 ? this.state.validEmail2 ? 'input-3' : 'input-2' : 'input-4'}  name="email" placeholder='@email.com'/>
               <label className='blocks' name="password"> Password </label>  
                 <input type='password' value={this.state.password} onChange={this.handlePassword} className={this.state.validPassword1 ? 'input-3' : 'input-4'} name="password" placeholder='********'/>
+                <img src={this.state.profilePic} className={this.state.validProfilePic ? "img-selector-off" : "img-selector"} width='130px' alt='user-profile-pic'></img>
+                <div className={this.state.validProfilePic ? "loader-pic-on" : "loader-pic"} >
+                <TailSpin
+                  height="80"
+                  width="80"
+                  color="#4f5c61"
+                  ariaLabel="tail-spin-loading"
+                  radius="2"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+                </div>
               <div className="img-btn-wrapper">
-                <label className="imageBtn" name='profileImage' htmlFor='profileImage'>Profile Image</label>
-                <input type='file' name='profileImage' className='profile-image' id='profileImage' onChange={this.handleImage}/>
+                <label className={this.state.validProfilePic ? "imageBtn-off" : "imageBtn"} name='profileImage' htmlFor='profileImage'>Update</label>
+                <input type='file' name='profileImage' className={this.state.validProfilePic ? 'profile-image-off' : 'profile-image'} id='profileImage' onChange={this.handleImage} style={{color: 'transparent'}} value=''/>
               </div>          
               <div className="wrongPassword">{this.state.alertMessage}</div> 
               <input type="submit" value="Submit" className={ this.state.name && this.state.lastname && this.state.validUsername2 && this.state.validEmail2 && this.state.validPassword1 ? 'submit-register' : 'submit-register-off'  }/>
