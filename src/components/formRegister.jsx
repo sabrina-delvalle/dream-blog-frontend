@@ -14,7 +14,7 @@ axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 class FormRegister extends Component {
   constructor(props){
     super(props);
-    this.state ={name: '', lastname: '', username: '', email: '', password: '', image: [], alertMessage: ''}; 
+    this.state ={name: '', lastname: '', username: '', email: '', password: '', image: [], alertMessage: '', validUsername1: false, validUsername2: false, validEmail1: false, validEmail2: false, validPassword1: false}; 
     
     this.handleName = this.handleName.bind(this);
     this.handleLastname = this.handleLastname.bind(this);
@@ -45,16 +45,65 @@ class FormRegister extends Component {
 
   handleUsername(event) {
       this.setState({username: event.target.value.toLowerCase()})
+      if(event.target.value.length >= 6){
+        this.setState({ validUsername1: true });
+      }else{
+        this.setState({ validUsername1: false });
+      }
+      fetch(`${process.env.REACT_APP_API}/checkuser`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          username: event.target.value.toLowerCase()
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        data.valid ? this.setState({ validUsername2: true }) : this.setState({ validUsername2: false })
+        console.log('data from user server: ', data);
+      })
   }
 
   handleEmail(event) {
-    this.setState({email: event.target.value}) //verify then it can be accessed. no repeated current in use
+    //verify then it can be accessed. no repeated current in use
+    const lastChar = event.target.value.split('');
+    this.setState({ email: event.target.value })
+    if(lastChar.some(e => e === '@')){
+      this.setState({validEmail1: true})
+    }else{
+      this.setState({validEmail1: false})
+    }
+
+      fetch(`${process.env.REACT_APP_API}/checkuser`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          email: event.target.value
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        data.valid ? this.setState({ validEmail2: true }) : this.setState({ validEmail2: false })
+        console.log('data from user server: ', data);
+      })
   }
 
   handlePassword(event) {
     //less than 8 in red... simple text saying the charcateristics.
     this.setState({password: event.target.value})
-
+    if(event.target.value.length < 8){
+      this.setState({validPassword1:false})
+    }else{
+      this.setState({validPassword1:true})
+    }
   }
 
   handleSubmit(event){
@@ -64,10 +113,12 @@ class FormRegister extends Component {
 
     if(this.state.username.length < 6 && this.state.password.length < 8){
       return this.setState({alertMessage: 'Please verify: username should be more than 6 chars and password more than 8 chars.'})
-    } else if(this.state.username.length < 6) {
-      return this.setState({alertMessage: 'Please verify: username should be more than 6 chars.'})
+    } else if(this.state.username.length < 6 && this.state.validUsername2) {
+      return this.setState({alertMessage: 'Please verify: user already exist'})
     } else if(this.state.password.length < 8) {
       return this.setState({alertMessage: 'Please verify: password should be more than 8 chars.'})
+    }else if(!this.state.validEmail2){
+      return this.setState({alertMessage: 'Please verify: email already exist.'})
     }
 
       const formData = new FormData();
@@ -133,17 +184,17 @@ class FormRegister extends Component {
               <label className='blocks' name="lastname"> Lastname </label>             
                 <input type='text' value={this.state.lastname} onChange={this.handleLastname} className='input-1' name="lastname"/>
               <label className='blocks' name="username"> Username </label>             
-                <input type='text' value={this.state.username} onChange={this.handleUsername} className='input-1' name="username"/>
+                <input type='text' value={this.state.username} onChange={this.handleUsername} className={this.state.validUsername1 ? this.state.validUsername2  ? 'input-3' : 'input-2' : 'input-4'} name="username"/>
               <label className='blocks' name="email"> Email </label>             
-                <input type='email' value={this.state.email} onChange={this.handleEmail} className='input-1' name="email" placeholder='@email.com'/>
+                <input type='email' value={this.state.email} onChange={this.handleEmail} className={this.state.validEmail1 ? this.state.validEmail2 ? 'input-3' : 'input-2' : 'input-4'}  name="email" placeholder='@email.com'/>
               <label className='blocks' name="password"> Password </label>  
-                <input type='password' value={this.state.password} onChange={this.handlePassword} className='input-1' name="password" placeholder='*******'/>
+                <input type='password' value={this.state.password} onChange={this.handlePassword} className={this.state.validPassword1 ? 'input-3' : 'input-4'} name="password" placeholder='********'/>
               <div className="img-btn-wrapper">
                 <label className="imageBtn" name='profileImage' htmlFor='profileImage'>Profile Image</label>
                 <input type='file' name='profileImage' className='profile-image' id='profileImage' onChange={this.handleImage}/>
               </div>          
               <div className="wrongPassword">{this.state.alertMessage}</div> 
-              <input type="submit" value="Submit" className='submit-register'/>
+              <input type="submit" value="Submit" className={ this.state.name && this.state.lastname && this.state.validUsername2 && this.state.validEmail2 && this.state.validPassword1 ? 'submit-register' : 'submit-register-off'  }/>
           </form>
 
           <div className='ssrr-register'>

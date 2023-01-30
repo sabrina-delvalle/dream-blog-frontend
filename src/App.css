@@ -330,7 +330,7 @@ a{
   width: 40%; 
   height: 30px;
   color: #606d70; 
-  font-size: 16px
+  font-size: 16px;
 }
 
 .input-1 { 
@@ -338,7 +338,40 @@ a{
   width: 40%; 
   height: 30px;
   color: #606d70; 
-  font-size: 16px
+  font-size: 16px;
+}
+.input-2 { 
+  margin: 1% 0 0 0;
+  width: 40%; 
+  height: 30px;
+  color: #606d70; 
+  font-size: 16px;
+  border: 2px solid rgb(249, 116, 116);
+  outline: none
+}
+.input-3 { 
+  margin: 1% 0 0 0;
+  width: 40%; 
+  height: 30px;
+  color: #606d70; 
+  font-size: 16px;
+  border: 2px solid rgb(87, 216, 124);
+  outline: none;
+}
+.input-4 { 
+  margin: 1% 0 0 0;
+  width: 40%; 
+  height: 30px;
+  color: #606d70; 
+  font-size: 16px;
+}
+.input-4:focus { 
+  margin: 1% 0 0 0;
+  width: 40%; 
+  height: 30px;
+  color: #606d70; 
+  font-size: 16px;
+  border: 2px solid rgb(249, 116, 116);
 }
 
 .input-1-log { 
@@ -387,6 +420,20 @@ a{
   margin-bottom: 0.3%;
   border-width: 0px;
   cursor: pointer;
+}
+.submit-register-off{
+  width: 8%; 
+  height: 40px;
+  color: white; 
+  font-size: 15px;
+  background-color: #d5e7ed;
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-bottom: 0.3%;
+  border-width: 0px;
+  cursor: pointer;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 .submit-register:hover{
   width: 8%; 
