@@ -736,7 +736,8 @@ a{
 
 .profile-image{
   position: absolute;
-  margin-right: 20px;
+/*   margin-right: 20px; */
+  margin-right: -5px;
   color: transparent; 
   -moz-margin-end: auto;
 }
