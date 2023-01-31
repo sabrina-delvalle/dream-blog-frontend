@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 
 //import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 //import { render } from 'react-dom'
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 
 /* render(
@@ -18,10 +18,7 @@ const root = createRoot(container); // createRoot(container!) if you use TypeScr
   document.getElementById("root")
 ); */
 
-root.render(
-  <App />
-);
-
+root.render(<App />);
 
 /* const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

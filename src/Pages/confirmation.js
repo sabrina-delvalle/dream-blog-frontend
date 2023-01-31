@@ -1,19 +1,21 @@
 import "../App.css";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import UserConfirmation from "../components/confirmation"
 import "../App.css";
 import { Link } from "react-router-dom";
 
-function Register() {
+function Confirmation() {
   return (
     <div>
       <Header />
+      <UserConfirmation />
       <Link to="/">
-        <h2 className={"done"}> Registration has been successful. </h2>
+        <h2 className={"done"}> Verifiying Email... </h2>
       </Link>
       <Footer />
     </div>
   );
 }
 
-export default Register;
+export default Confirmation;

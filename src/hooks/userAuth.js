@@ -16,5 +16,5 @@ import Cookies from "js-cookie";
   }) */
 
 export default function userAuth() {
-  return Cookies.get('userSession') ? <Outlet/> : <Navigate to="/" replace />;
+  return Cookies.get("userSession") ? <Outlet /> : <Navigate to="/" replace />;
 }
