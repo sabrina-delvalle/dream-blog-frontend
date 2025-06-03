@@ -16,6 +16,7 @@ import Account from "./Pages/account";
 import { UserContext } from "./UserContext";
 import ProtectedRoutes from "./ProtectedRoutes";
 import userAuth from "./hooks/userAuth";
+
 //import { QueryClient, QueryClientProvider } from 'react-query';
 
 //const queryClient = new QueryClient();
